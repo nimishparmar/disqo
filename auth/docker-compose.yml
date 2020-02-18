@@ -1,0 +1,40 @@
+nginx:
+  build: images/nginx
+  command: nginx -g "daemon off;"
+  links:
+    - php
+  ports:
+    - "8000:8000"
+php:
+  build: images/php
+  volumes:
+    - ./images/php:/var/www/html
+  working_dir: /var/www/html/auth/public
+  command: php-fpm
+  links:
+    - db
+    - cache
+  ports:
+    - "9000:9000"
+  environment:
+    APP_ENV: local
+    APP_LOCALE: en
+    APP_FALLBACK_LOCALE: en
+    DB_CONNECTION: mysql
+    DB_HOST: db
+    DB_DATABASE: disqo
+    DB_USERNAME: disqo
+    DB_PASSWORD: disqo
+    MEMCACHED_HOST: cache
+    CACHE_DRIVER: memcached
+db:
+  image: mysql:5.7.29
+  ports:
+    - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: disqorootpwd
+    MYSQL_DATABASE: disqo
+    MYSQL_USER: disqo
+    MYSQL_PASSWORD: disqo
+cache:
+  image: memcached

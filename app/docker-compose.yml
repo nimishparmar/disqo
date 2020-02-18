@@ -1,0 +1,19 @@
+nginx:
+  build: images/nginx
+  command: nginx -g "daemon off;"
+  links:
+    - php
+  ports:
+    - "4000:4000"
+php:
+  build: images/php
+  volumes:
+    - ./images/php:/var/www/html
+  working_dir: /var/www/html/app/public
+  command: php-fpm
+  ports:
+    - "5000:5000"
+  environment:
+    APP_ENV: local
+    APP_LOCALE: en
+    APP_FALLBACK_LOCALE: en
