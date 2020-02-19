@@ -35,7 +35,7 @@ This RESTful service acts as the main authentication source. The only endpoint t
 
 The service is written in PHP 7.2 using [Lumen](https://lumen.laravel.com/) micro-framework with its own nginx and MySQL database. The service is hosted here [http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:8000](http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:8000) and the codebase for the service is here https://github.com/nimishparmar/disqo/tree/master/auth
 
-The service is entirely dockerized and is running in its own instance.
+The service is entirely dockerized and is running in its own container.
 
 **Product Service**
 
@@ -43,7 +43,7 @@ This RESTful service acts as the central repository of all products within the s
 
 The service is written in PHP 7.2 using [Lumen](https://lumen.laravel.com/) micro-framework with its own nginx and MySQL database. The service is hosted here [http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:7000](http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:7000) and the codebase for the service is here https://github.com/nimishparmar/disqo/tree/master/product_service
 
-The service is entirely dockerized and is running in its own instance.
+The service is entirely dockerized and is running in its own container.
 
 In my implementation, the product service doesn't authenticate. In production systems, each microservice would authenticate against either a central auth system (single point of failure) or implement authentication locally (code/functionality duplication).
 
@@ -55,7 +55,7 @@ This is the main user-facing web application. The login interface is hosted here
 
 The service is written in PHP 7.2 using [Lumen](https://lumen.laravel.com/) micro-framework with its own nginx and does not have a database, since its only making REST API calls for data. The service is hosted here [http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com](http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com) and the codebase for the application is here https://github.com/nimishparmar/disqo/tree/master/app
 
-The service is entirely dockerized and is running in its own instance.
+The service is entirely dockerized and is running in its own container.
 
 Having well defined microservices with their own databases helps in scaling each service as needed. In production systems, each service could have a loadbalancer in front of it if needed. Separate teams of developers can focus independently on these services and deploy them independently as well. Monitoring, logging and alerting on each service provides fine grained real-time information in production systems.
 
