@@ -57,10 +57,10 @@ Having well defined microservices with their own databases helps in scaling each
 
 
 # Proposed data model (for production)
-
+![image](https://github.com/nimishparmar/disqo/blob/master/DISQO_E-Commerce_platform.png)
 
 # High level systems integration
-
+![image](https://github.com/nimishparmar/disqo/blob/master/DISQO_Systems_Diagram.png)
 
 
 # High level technical roadmap
@@ -68,76 +68,6 @@ Here's a very high level technical roadmap, which takes into account the fact th
 
 As you notice, some of the tasks, such as (Cart/Cart Items + Quote/Quote Items and Auth Service + Receipts/Receipt Items + Web Client) can potentially be done in parallel by different teams.
 
-I've used a very rough number of business days each subtask could take.
+I've used a very rough number of business days each subtask could take. [Here's](https://github.com/nimishparmar/disqo/blob/master/disqo-project-plan.pdf) a link to the pdf version of the image below
 
-
-```mermaid
-gantt
-title DISQO E-Commerce Platform - High level roadmap
-dateFormat YYYY-MM-DD
-section Planning and vetting
-Initial schema design :2020-03-01, 5d
-Formalize schema design :5d
-Review with peers :3d
-Review with other stakeholders :2d
-section Product Service
-Data models/Schema :2020-03-15, 5d
-Business logic :15d
-REST API exposing business logic :10d
-Testing :5d
-Release :1d
-Post release testing :2d
-section Cart and Cart Items
-Data models/Schema :2020-04-20, 10d
-Business logic :5d
-REST API exposing business logic :5d
-Testing :5d
-Release :1d
-Post release testing :2d
-section Quote and Quote Items
-Data models/Schema :2020-04-20, 10d
-Business logic :5d
-REST API exposing business logic :5d
-Testing :5d
-Release :1d
-Post release testing :2d
-section Transaction Service
-Payment gateway integration :2020-05-17, 14d
-REST API exposing business logic :10d
-Testing :10d
-Release :1d
-Post release testing :5d
-section Order and Order Items
-Data models/Schema :2020-06-20, 10d
-Business logic :10d
-REST API exposing business logic :5d
-Testing :5d
-Release :1d
-Post release testing :2d
-section Receipt and Receipt Items
-Data models/Schema :2020-07-22, 5d
-Business logic :10d
-REST API exposing business logic :5d
-Testing :5d
-Release :1d
-Post release testing :2d
-section Auth Service
-Data models/Schema :2020-07-22, 15d
-Business logic :15d
-REST API exposing business logic :5d
-Testing :5d
-Release :1d
-Post release testing :2d
-section API Gateway
-Implementation :2020-09-01, 10d
-Testing :5d
-Release :1d
-Post release testing :2d
-section Web App
-Implementation :2020-08-01, 20d
-Testing :10d
-Release :1d
-Post release testing :5d
-section Integration Testing
-End-to-end testing :2020-09-20, 15d
-```
+![image](https://github.com/nimishparmar/disqo/blob/master/disqo-project-plan.png)
