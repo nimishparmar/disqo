@@ -45,6 +45,10 @@ The service is written in PHP 7.2 using [Lumen](https://lumen.laravel.com/) micr
 
 The service is entirely dockerized and is running in its own instance.
 
+In my implementation, the product service doesn't authenticate. In production systems, each microservice would authenticate against either a central auth system (single point of failure) or implement authentication locally (code/functionality duplication).
+
+I'm very intrigued by [Istio](https://istio.io/docs/concepts/security/), which offers not just service level loadbalancing, but authentication and fine grained traffic control.
+
 **Web App**
 
 This is the main user-facing web application. The login interface is hosted here, which interfaces with the Authentication Service. Upon successful login, the search functionality is also hosted here, which interfaces with the Product Service.
@@ -57,6 +61,18 @@ Having well defined microservices with their own databases helps in scaling each
 
 
 # Proposed data model (for production)
+- Each user has one cart (which can be empty or have 1 or more items)
+- Each cart is made up of cart items
+- Since price of items/products could change between the time it was added to the cart and checkout, I've introduced a concept of quotes
+- Quotes are direct representation of cart, but with the most updated price information
+- Each quote is made up of quite items (1:1 representation with cart item)
+- Transactions are carried out against quotes, since this is what the user agrees to prior to checkout
+- Upon successful checkout, cart becomes empty
+- Recepits are immutable objects and maintain 1:1 representation against cart/quote items
+- Any change to an order (cancellation, refunds etc) will generate a new receipt
+- Orders represent fulfillment and are the basis of shipments
+- Each order has an order item (1:1 representation against cart/quote items)
+
 ![image](https://github.com/nimishparmar/disqo/blob/master/DISQO_E-Commerce_platform.png)
 
 # High level systems integration
@@ -71,3 +87,16 @@ As you notice, some of the tasks, such as (Cart/Cart Items + Quote/Quote Items a
 I've used a very rough number of business days each subtask could take. [Here's](https://github.com/nimishparmar/disqo/blob/master/disqo-project-plan.pdf) a link to the pdf version of the image below
 
 ![image](https://github.com/nimishparmar/disqo/blob/master/disqo-project-plan.png)
+
+
+# Some KPIs to track
+To track the success of our e-commerce platform, we can perform the classic funnel analysis on these metrics --
+- Number of homepage visitors
+- Number of signup conversions
+- Number of items/products viewed/searched
+- Number of items/products added to cart
+- Average number of orders per user
+- Average order value (Average checkout value)
+- Number of abandoned carts
+
+Tracking these metrics could be done by sending specific events to systems such as [Amplitude](https://amplitude.com/). Additionally, we can leverage BI tools such as Tableau to gain further insight.
