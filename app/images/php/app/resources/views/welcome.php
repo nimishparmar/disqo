@@ -63,7 +63,7 @@
             if (result.token) {
               document.cookie = "jwt=" + result.token
               // The redirect URL would be stored in a config file in production systems instead of being hardcoded here
-              window.location.replace("http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:4000/search");
+              window.location.replace("http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com/search");
             }
           },
           error: function(err) {
