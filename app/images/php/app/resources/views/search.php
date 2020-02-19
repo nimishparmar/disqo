@@ -35,6 +35,9 @@
     </form>
   </div>
 
+  <br />
+  <br />
+
   <div class="container">
     <table class="table table-striped table-dark" id="product_list">
       <thead>
@@ -58,7 +61,7 @@
           }
         });
         jQuery.ajax({
-          url: "http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com/:7000/api/v1/search",
+          url: "http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:7000/api/v1/search",
           method: 'post',
           data: {
             search_term: jQuery('#search_term').val()
@@ -77,7 +80,12 @@
 
                 tr.cells[0].appendChild(document.createTextNode(result.products[i].product_name))
                 tr.cells[1].appendChild(document.createTextNode(result.products[i].product_description))
-                tr.cells[2].appendChild(document.createTextNode(result.products[i].price))
+
+                // The data returned from the API has 4 decimal places for greater accuracy
+                // We need to represent the price in 2 decimal places
+                var price = parseFloat(result.products[i].price).toFixed(2)
+
+                tr.cells[2].appendChild(document.createTextNode('$' + price))
                 tr.cells[3].appendChild(document.createTextNode(result.products[i].product_sku))
 
                 table.appendChild(tr)

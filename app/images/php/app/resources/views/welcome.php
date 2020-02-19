@@ -49,7 +49,7 @@
           }
         });
         jQuery.ajax({
-	  // The POST URL would be stored in a config file in production systems instead of being hardcoded here
+	        // The POST URL would be stored in a config file in production systems instead of being hardcoded here
           url: "http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:8000/api/v1/login",
           method: 'post',
           data: {
@@ -62,7 +62,7 @@
             // redirect to search page
             if (result.token) {
               document.cookie="jwt="+result.token
-	      // The redirect URL would be stored in a config file in production systems instead of being hardcoded here
+	            // The redirect URL would be stored in a config file in production systems instead of being hardcoded here
               window.location.replace("http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:4000/search");
             }
           }
