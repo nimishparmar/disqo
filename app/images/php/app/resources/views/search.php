@@ -68,10 +68,16 @@
           },
           success: function(result) {
             // If we get results back from search, populate the product list
-            var table = document.getElementById('product_list');
+            var table = document.getElementById('product_list')
+
+            // Clear any rows first
+            for (var i = table.rows.length - 1; i > 0; i--) {
+              table.deleteRow(i);
+            }
+            
             if (result.products.length > 0) {
 
-              for (var i=0; i < result.products.length; i++)  {
+              for (var i = 0; i < result.products.length; i++) {
                 var tr = document.createElement('tr')
                 tr.appendChild(document.createElement('td'))
                 tr.appendChild(document.createElement('td'))
@@ -90,11 +96,11 @@
 
                 table.appendChild(tr)
               }
-            } else  {
+            } else {
               var tr = document.createElement('tr')
               var td = tr.appendChild(document.createElement('td'))
               td.colSpan = 4
-              td.align = "center" 
+              td.align = "center"
 
               tr.cells[0].appendChild(document.createTextNode('No products found'))
 
