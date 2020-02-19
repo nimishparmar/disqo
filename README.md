@@ -100,3 +100,12 @@ To track the success of our e-commerce platform, we can perform the classic funn
 - Number of abandoned carts
 
 Tracking these metrics could be done by sending specific events to systems such as [Amplitude](https://amplitude.com/). Additionally, we can leverage BI tools such as Tableau to gain further insight.
+
+# Items I was not able to get to...
+Despite enjoying working on this exercise, due to time constraints I was not able to do everything that was asked for. Here are some of the items I wish I could've done --
+- Writing unit tests
+- Database schema of my implementation (I worked on what a production system would look like instead)
+- OpenAPI/Swagger docs
+- Adding a kubernetes cluster to monitor my docker instances
+
+Thank you again for giving me the opportunity to work on this coding challenge. Please do not hesitate to get in touch with me if you have any questions at nimish.parmar@gmail.com
