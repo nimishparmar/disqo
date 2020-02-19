@@ -37,6 +37,8 @@ The service is written in PHP 7.2 using [Lumen](https://lumen.laravel.com/) micr
 
 The service is entirely dockerized and is running in its own container.
 
+![image](https://github.com/nimishparmar/disqo/blob/master/auth_service_postman.png)
+
 **Product Service**
 
 This RESTful service acts as the central repository of all products within the system. For the sake of this exercise, the only endpoint I've implemented is `/api/v1/search` which accepts a POST HTTP method with `search_term` as form data. I've implemented a simple text based search, which does a string matching against the product name and returns a set of matching records.
@@ -48,6 +50,8 @@ The service is entirely dockerized and is running in its own container.
 In my implementation, the product service doesn't authenticate. In production systems, each microservice would authenticate against either a central auth system (single point of failure) or implement authentication locally (code/functionality duplication).
 
 I'm very intrigued by [Istio](https://istio.io/docs/concepts/security/), which offers not just service level loadbalancing, but authentication and fine grained traffic control.
+
+![image](https://github.com/nimishparmar/disqo/blob/master/prod_service_postman.png)
 
 **Web App**
 
