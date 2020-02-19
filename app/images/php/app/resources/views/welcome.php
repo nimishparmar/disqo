@@ -49,7 +49,8 @@
           }
         });
         jQuery.ajax({
-          url: "http://localhost:8000/api/v1/login",
+	  // The POST URL would be stored in a config file in production systems instead of being hardcoded here
+          url: "http://http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:8000/api/v1/login",
           method: 'post',
           data: {
             email: jQuery('#email').val(),
@@ -61,7 +62,8 @@
             // redirect to search page
             if (result.token) {
               document.cookie="jwt="+result.token
-              window.location.replace("http://localhost:4000/search");
+	      // The redirect URL would be stored in a config file in production systems instead of being hardcoded here
+              window.location.replace("http://http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:4000/search");
             }
           }
         });

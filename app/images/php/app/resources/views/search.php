@@ -58,7 +58,7 @@
           }
         });
         jQuery.ajax({
-          url: "http://localhost:7000/api/v1/search",
+          url: "http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com/:7000/api/v1/search",
           method: 'post',
           data: {
             search_term: jQuery('#search_term').val()
@@ -66,7 +66,6 @@
           success: function(result) {
             // If we get results back from search, populate the product list
             var table = document.getElementById('product_list');
-            console.log(result.products)
             if (result.products.length > 0) {
 
               for (var i=0; i < result.products.length; i++)  {
