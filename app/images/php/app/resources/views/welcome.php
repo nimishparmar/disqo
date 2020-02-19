@@ -17,21 +17,21 @@
   <h1 class="text-center">DISQO E-Commerce Platform</h1>
 
   <div class="container w-25">
+  <div id="error_message"></div>
     <form>
       <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        <label for="email">Email address</label>
+        <input type="email" class="form-control" id="email">
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
+        <label for="password">Password</label>
         <input type="password" class="form-control" id="password">
       </div>
       <button type="submit" id="ajaxSubmit" class="btn btn-primary">Submit</button>
     </form>
   </div>
 
-  <!-- Optional JavaScript -->
+
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -49,7 +49,7 @@
           }
         });
         jQuery.ajax({
-	        // The POST URL would be stored in a config file in production systems instead of being hardcoded here
+          // The POST URL would be stored in a config file in production systems instead of being hardcoded here
           url: "http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:8000/api/v1/login",
           method: 'post',
           data: {
@@ -61,10 +61,15 @@
             // Set the JWT token in a cookie and
             // redirect to search page
             if (result.token) {
-              document.cookie="jwt="+result.token
-	            // The redirect URL would be stored in a config file in production systems instead of being hardcoded here
+              document.cookie = "jwt=" + result.token
+              // The redirect URL would be stored in a config file in production systems instead of being hardcoded here
               window.location.replace("http://ec2-52-41-118-144.us-west-2.compute.amazonaws.com:4000/search");
             }
+          },
+          error: function(err) {
+            // Display error message upon failed authentication
+            jQuery('#error_message').addClass('alert alert-danger')
+            jQuery('#error_message').text('Invalid credentials. Please try again.')
           }
         });
       });
