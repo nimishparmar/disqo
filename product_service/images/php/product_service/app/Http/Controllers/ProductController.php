@@ -14,6 +14,13 @@ class ProductController extends Controller
      * @return JSON
      */
     public function search(Request $request) {
+        // Return empty product set if no search term is given
+        if (!$request->input('search_term')) {
+            return response()->json([
+                'products' => []
+            ], 200);
+        }
+
         $searchTerm = $request->input('search_term');
 
         // Find some products based on a simple text search on the name
